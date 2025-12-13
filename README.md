@@ -14,5 +14,12 @@ Compiti:
 - Generare il segnale di Rumore Gaussiano Bianco con randn() da passare al team di analisi.
 - Salvare i file audio di uscita (per l'ascolto) in una cartella ordinata
 
-3) Flavio:
-L'"Analyst" (Spettri e Plot)Obiettivo: Visualizzare i risultati e stimare la funzione di trasferimento.Compiti:Adattare il codice dell'Esercitazione 1 per plottare gli spettri di ampiezza14.Implementare il calcolo della Funzione di Trasferimento $H(f)$. Attenzione: Questo va fatto calcolando la FFT dell'uscita e dell'ingresso del segnale di Rumore Bianco generato dalla Persona 2, per evitare divisioni per zero15151515.Creare i grafici comparativi (Spettro Ingresso vs Spettro Uscita).
+3) Flavio: L'"Analyst" (Spettri e Plot)
+Obiettivo: Visualizzare i risultati e stimare la funzione di trasferimento.
+Compiti:
+- Adattare il codice dell'Esercitazione 1 per plottare gli spettri di ampiezza14.
+- Implementare il calcolo della Funzione di Trasferimento $H(f)$. 
+  Attenzione: Questo va fatto calcolando la FFT dell'uscita 
+  e dell'ingresso del segnale di Rumore Bianco generato dalla Persona 2, 
+  per evitare divisioni per zero.
+- Creare i grafici comparativi (Spettro Ingresso vs Spettro Uscita).
