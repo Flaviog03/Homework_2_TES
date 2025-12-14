@@ -31,7 +31,7 @@ function y = filtro_coseno(T, beta, Fs)
     t = -num_cicli * T : 1/Fs : num_cicli * T;
     % Implementazione Formula:
     % h(t) = (1/T) * sinc(t/T) * cos(pi*beta*t/T) / (1 - (2*beta*t/T)^2)
-    numeratore_1 = (1/T) * sinc(t/T);
+    numeratore_1 = (1/T) * my_sinc(t/T);
     numeratore_2 = cos(pi * beta * t / T);
     denominatore = 1 - (2 * beta * t / T).^2;
 
