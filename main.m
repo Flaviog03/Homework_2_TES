@@ -21,11 +21,6 @@ else
 end
 x = x(inizio:fine);
 
-% non ho capito se dovevo anche chiamare la funzione per i grafici
-% quindi nel dubbio ho messo questa
-% nel caso toglietela pure
-plotSpecsBilateral(x,fft(x),Fs,'segnale originale');
-
 % sound(x, Fs);
 
 % Parametri di progetto dalla Slide 9
@@ -46,12 +41,8 @@ for i = 1:3
     % sound(y_out, Fs);
     % pause(5.5);
 
-    titolo = sprintf('segnale_filtrato_%d', i);
-    plotSpecsBilateral(y_out,fft(y_out),Fs,'segnale filtrato'); 
-    % stessa cosa di sopra per i grafici dopo il filtraggio
+    plotConfronto(x, y_out, Fs, sprintf('Filtro %d - Analisi Musica', i));
+    
+    % stima della risposta in frequenza con rumore bianco
+    stimaH(h, Fs, sprintf('Filtro %d - Risposta in Frequenza', i));
 end
-
-
-
-
-
