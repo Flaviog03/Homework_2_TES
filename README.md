@@ -25,32 +25,36 @@ Compiti:
 - Creare i grafici comparativi (Spettro Ingresso vs Spettro Uscita).
 
 -----
+### 📄 Documentazione Funzioni Analisi (per functions/)
+Ecco le specifiche per le due nuove funzioni di analisi implementate per il testing dei filtri.
+1. stimaH.m
+Scopo:Calcola e visualizza la stima della Risposta in Frequenza $H(f)$ del filtro.Come richiesto dalle specifiche, non usa la semplice FFT dell'impulso, ma simula il passaggio di Rumore Bianco attraverso il filtro e calcola il rapporto tra le densità spettrali ($H(f) = Y(f)/X(f)$).
+Sintassi:MatlabstimaH(h_filtro, Fs, titolo)
+Parametri:
+  - h_filtro: Il vettore della risposta all'impulso (output della funzione filtri).
+  - Fs: Frequenza di campionamento (es. 44100).
+  - titolo: Stringa per personalizzare il titolo del grafico.
+Cosa visualizza:
+  - Un grafico del modulo $|H(f)|$.
+  - Linea tratteggiata rossa a 1 kHz (frequenza di taglio target).
+Nota: Essendo un metodo stocastico (basato su rumore random), la curva potrebbe presentare lievi "frastagliamenti".
+Esempio d'uso: Matlab[~, h_impulse] = filtri(2, x, T, beta, Fs); 
+% Ottengo h
+stimaH(h_impulse, Fs, 'Analisi Coseno Rialzato');
 
-### 📝 Aggiornamento Moduli di Analisi (Flavio)
-
-Sono stati aggiunti due nuovi moduli nella cartella `functions/` per completare i requisiti del progetto (slide 8 e 12).
-
-#### 1\. Nuovo file: `functions/plot_confronto.m`
-
-  * **A cosa serve:** Sovrappone lo spettro del segnale originale e quello filtrato in un unico grafico (dB) per visualizzare l'effetto del taglio di frequenza.
-  * **Come usarlo nel main:**
-    ```matlab
-    % Esempio di chiamata
-    plot_confronto(x, y_out, Fs, 'Titolo del Grafico');
-    ```
-
-#### 2\. Nuovo file: `functions/stima_h_auto.m`
-
-  * **A cosa serve:** Calcola e plotta la Risposta in Frequenza $H(f)$ del filtro.
-      * *Nota:* Genera internamente il **Rumore Bianco** necessario per la stima corretta, quindi non serve sporcare il main con vettori di rumore.
-  * **Come usarlo nel main:**
-    Basta passargli il vettore `h` (che esce dalla funzione `filtri`):
-    ```matlab
-    % Esempio di chiamata
-    stima_h_auto(h, Fs, 'Titolo del Grafico');
-    ```
-
------
+2. plotConfronto.m
+Scopo:Confronta visivamente lo spettro del segnale originale con quello del segnale filtrato per verificare l'efficacia del taglio delle frequenze.Sintassi:MatlabplotConfronto(x_in, x_out, Fs, titolo)
+Parametri:
+  - x_in: Segnale audio originale (ingresso).
+  - x_out: Segnale audio filtrato (uscita).
+  - Fs: Frequenza di campionamento.
+  - titolo: Stringa descrittiva per il grafico.
+Cosa visualizza:
+  - Spettro di ampiezza in dB.
+  - Grigio: Segnale originale (Input).
+  - Rosso: Segnale filtrato (Output).
+Gestisce automaticamente lunghezze diverse dei vettori tagliandoli alla dimensione minima comune.Esempio d'uso:Matlab[y_out, ~] = filtri(2, x_in, T, beta, Fs);
+plotConfronto(x_in, y_out, Fs, 'Verifica Taglio Alti');
 
 ### 🔧 Istruzioni per l'integrazione in `main.m` (per Bianca)
 
